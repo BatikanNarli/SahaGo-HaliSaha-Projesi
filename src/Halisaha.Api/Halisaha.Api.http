@@ -1,0 +1,48 @@
+@Halisaha.Api_HostAddress = http://127.0.0.1:5198
+@AccessToken = replace-with-access-token
+
+GET {{Halisaha.Api_HostAddress}}/health/ready
+Accept: text/plain
+
+###
+
+GET {{Halisaha.Api_HostAddress}}/api/v1/availability?district=Kad%C4%B1k%C3%B6y&localDate=2026-08-20&localTime=20%3A00&durationMinutes=60
+Accept: application/json
+
+###
+
+POST {{Halisaha.Api_HostAddress}}/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "displayName": "Yerel Test Oyuncu",
+  "email": "oyuncu@example.test",
+  "phoneNumber": null,
+  "password": "ReplaceWithStrongLocalPassword1"
+}
+
+###
+
+POST {{Halisaha.Api_HostAddress}}/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "identifier": "oyuncu@example.test",
+  "password": "ReplaceWithStrongLocalPassword1"
+}
+
+###
+
+POST {{Halisaha.Api_HostAddress}}/api/v1/auth/refresh
+
+###
+
+GET {{Halisaha.Api_HostAddress}}/api/v1/auth/me
+Accept: application/json
+Authorization: Bearer {{AccessToken}}
+
+###
+
+POST {{Halisaha.Api_HostAddress}}/api/v1/auth/logout
+
+###
